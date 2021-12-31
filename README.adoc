@@ -1,0 +1,491 @@
+= citizenDevCycle
+Generated with Bonita
+v1.0.0, {docdate}
+:toc: left
+:toc-title: Table of contents
+:toclevels: 2
+:bonita-version: 7.13
+:imagesdir: ./documentation/images
+:icons: font
+:sectnums: numbered
+:sectanchors:
+:hardbreaks:
+:experimental:
+
+[abstract]
+--
+Citizen developer cycle
+--
+
+== Business Data Model
+
+image::bdm.svg[link=images/bdm.svg]
+
+=== Package com.company.model
+
+==== Claim
+
+_No description available_
+
+===== icon:list[] Attributes
+
+[grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
+|===
+|Name                                        |Type   |Description
+|[[Claim.persistenceId]]persistenceId*       |Long   |           
+|[[Claim.description]]description*           |String |           
+|[[Claim.answer]]answer                      |String |           
+|[[Claim.satisfactionLevel]]satisfactionLevel|Integer|           
+|===
+
+==== CustomerCompensation
+
+_No description available_
+
+===== icon:list[] Attributes
+
+[grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
+|===
+|Name                                                                   |Type     |Description
+|[[CustomerCompensation.persistenceId]]persistenceId*                   |Long     |           
+|[[CustomerCompensation.compensationType]]compensationType              |String   |           
+|[[CustomerCompensation.compensationValue]]compensationValue            |Integer  |           
+|[[CustomerCompensation.compensationDescription]]compensationDescription|String   |           
+|[[CustomerCompensation.compensationValidation]]compensationValidation  |Boolean  |           
+|[[CustomerCompensation.claim]]&#x25c7; claim*                          |<<Claim>>|           
+|===
+
+== Application pages
+
+=== [[_ae20f26f-5e64-3563-9360-c0c9105fea02]]image:icons/page.png[] claimsList
+
+Page generated with Bonita UI designer
+
+.Widgets
+[caption=,grid=cols,options="header",cols="1,2,4a",stripes=even,frame=topbot]
+|===
+|Type |Label|Description
+|Table|     |           
+|===
+
+== Processes
+
+=== image:icons/Pool.png[title="Process"] [[_416e79ae-3021-36a7-8327-bb68c4f29d81]]ClaimsManagement (1.0)
+
+_No description available_
+
+image::processes/ClaimsManagement-1.0.png[]
+
+==== icon:users[] Actors
+
+[grid=cols,options="header",cols="1,3a",stripes=even,frame=topbot]
+|===
+|Name                                                                                               |Description                                                 
+|[[_a167d3fc-d04f-3d85-a54c-a2aa3f8a7806]]Employee actor                                            |This is an example of actor that is mapped to any ACME users
+|[[_7baead0e-4ef6-3f65-8305-f0b9d75764ae]]Customer actor icon:play-circle[title="Process initiator"]|                                                            
+|[[_4f574325-9c37-3f4a-85ba-b40f6d651200]]Manager actor                                             |                                                            
+|===
+
+==== Instantiation form
+
+===== [[_c1f16a80-eb3b-374c-b61a-146cf806045f]]image:icons/page.png[] submitClaimForm
+
+Page generated with Bonita UI designer
+
+.Widgets
+[caption=,grid=cols,options="header",cols="1,2,4a",stripes=even,frame=topbot]
+|===
+|Type    |Label      |Description
+|Title   |           |           
+|Textarea|Description|           
+|Button  |Submit     |           
+|Text    |           |           
+|===
+
+==== icon:list-alt[] Contract inputs
+
+[verse]
+{
+    claimInput ([teal]_ClaimInput_)
+}
+
+[verse]
+[teal]#ClaimInput# {
+    description ([olive]_Text_)
+}
+
+==== icon:check-circle[] Contract constraints
+
+mandatory_claimInput_description:: _No description available_
++
+.Expression
+[source,groovy]
+----
+claimInput?.description != null
+----
++
+.Technical error message
+----
+description is mandatory for Claim
+----
+
+==== image:icons/Lane.png[title="Lane"] Customer lane (<<_7baead0e-4ef6-3f65-8305-f0b9d75764ae,icon:user[title="Actor"] Customer actor>>)
+
+_No description available_
+
+==== image:icons/Lane.png[title="Lane"] Employee lane (<<_a167d3fc-d04f-3d85-a54c-a2aa3f8a7806,icon:user[title="Actor"] Employee actor>>)
+
+_No description available_
+
+==== image:icons/Lane.png[title="Lane"] Manager lane (<<_4f574325-9c37-3f4a-85ba-b40f6d651200,icon:user[title="Actor"] Manager actor>>)
+
+_No description available_
+
+==== [[_046a9b13-ffb1-38ae-8f88-0b00a5a4de14]]image:icons/StartEvent.png[title="StartEvent"] Submit claim
+
+_No description available_
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_ce6cfde1-2fb5-356e-9386-b0c3e786c35b,Review and answer claim>>*
+
+==== [[_ce6cfde1-2fb5-356e-9386-b0c3e786c35b]]image:icons/Task.png[title="Task"] Review and answer claim
+
+_No description available_
+
+*Previous flow element(s)*: <<_046a9b13-ffb1-38ae-8f88-0b00a5a4de14,Submit claim>>
+
+===== [[_84b5313e-44d5-3ebb-bb34-e7988ab76efb]]image:icons/page.png[] reviewAndAnswerForm
+
+Page generated with Bonita UI designer
+
+.Widgets
+[caption=,grid=cols,options="header",cols="1,2,4a",stripes=even,frame=topbot]
+|===
+|Type  |Label      |Description
+|Title |           |           
+|Text  |           |           
+|Title |           |           
+|Text  |Description|           
+|Input |Answer     |           
+|Button|Submit     |           
+|Text  |           |           
+|===
+
+===== icon:list-alt[] Contract inputs
+
+[verse]
+{
+    claimInput ([teal]_ClaimInput_)
+}
+
+[verse]
+[teal]#ClaimInput# {
+    answer ([olive]_Text_)
+}
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_bd59ee33-6919-385e-977b-4165275e4456,Read the answer and rate it>>*
+
+==== [[_bd59ee33-6919-385e-977b-4165275e4456]]image:icons/Task.png[title="Task"] Read the answer and rate it
+
+_No description available_
+
+*Previous flow element(s)*: <<_ce6cfde1-2fb5-356e-9386-b0c3e786c35b,Review and answer claim>>
+
+===== [[_222d7ea9-e912-3137-b6ad-b438e01f381b]]image:icons/page.png[] readAnswerAndRateItForm
+
+Page generated with Bonita UI designer
+
+.Widgets
+[caption=,grid=cols,options="header",cols="1,2,4a",stripes=even,frame=topbot]
+|===
+|Type  |Label             |Description
+|Title |                  |           
+|Text  |                  |           
+|Title |                  |           
+|Text  |Description       |           
+|Text  |Answer            |           
+|Input |Satisfaction Level|           
+|Button|Submit            |           
+|Text  |                  |           
+|===
+
+===== icon:list-alt[] Contract inputs
+
+[verse]
+{
+    claimInput ([teal]_ClaimInput_)
+}
+
+[verse]
+[teal]#ClaimInput# {
+    satisfactionLevel ([olive]_Integer_)
+}
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_4b4cc1de-670b-33dd-ad63-2e02574730fe,Satisfaction level>>*
+
+==== [[_4b4cc1de-670b-33dd-ad63-2e02574730fe]]image:icons/XORGateway.png[title="XORGateway"] Satisfaction level
+
+_No description available_
+
+*Previous flow element(s)*: <<_bd59ee33-6919-385e-977b-4165275e4456,Read the answer and rate it>>
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*Good: To <<_a5c19707-b9d9-3457-98cd-09051d87f540,End client satisfied>> (default)*
+
+To <<_aa8347a7-09fc-378c-9f97-28f2aa22fc45,Trigger compensation>>::
++
+.When:
+[source,groovy]
+----
+claim.satisfactionLevel < 3
+----
+
+==== [[_aa8347a7-09fc-378c-9f97-28f2aa22fc45]]image:icons/CallActivity.png[title="CallActivity"] Trigger compensation
+
+_No description available_
+
+*Previous flow element(s)*: <<_4b4cc1de-670b-33dd-ad63-2e02574730fe,Satisfaction level>>
+
+===== icon:plug[] Connectors in
+
+*Email (SMTP): Send notification*
+
+===== icon:plus-square[] Called process
+
+<<_9543acc0-c9a7-320b-abde-8e6030f8cf3a,image:icons/Pool.png[title="Process"] Unsatisfied custom treatment (1.0)>>
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_b3893d48-7c04-3f0a-a2e6-424184b49afb,End client unsatisfied>>*
+
+==== [[_b3893d48-7c04-3f0a-a2e6-424184b49afb]]image:icons/EndEvent.png[title="EndEvent"] End client unsatisfied
+
+_No description available_
+
+*Previous flow element(s)*: <<_aa8347a7-09fc-378c-9f97-28f2aa22fc45,Trigger compensation>>
+
+==== [[_a5c19707-b9d9-3457-98cd-09051d87f540]]image:icons/EndEvent.png[title="EndEvent"] End client satisfied
+
+_No description available_
+
+*Previous flow element(s)*: <<_4b4cc1de-670b-33dd-ad63-2e02574730fe,Satisfaction level>>
+
+=== image:icons/Pool.png[title="Process"] [[_9543acc0-c9a7-320b-abde-8e6030f8cf3a]]Unsatisfied custom treatment (1.0)
+
+_No description available_
+
+image::processes/Unsatisfied custom treatment-1.0.png[]
+
+==== icon:users[] Actors
+
+[grid=cols,options="header",cols="1,3a",stripes=even,frame=topbot]
+|===
+|Name                                                                                         |Description
+|[[_db314dfd-7ee8-3a0a-87f5-f0e219cb3ad9]]Employee icon:play-circle[title="Process initiator"]|           
+|[[_e3432aa0-e197-3e23-8c84-0ce5c0be8ed1]]Manager                                             |           
+|===
+
+==== image:icons/Lane.png[title="Lane"] Employee (<<_db314dfd-7ee8-3a0a-87f5-f0e219cb3ad9,icon:user[title="Actor"] Employee>>)
+
+_No description available_
+
+==== image:icons/Lane.png[title="Lane"] Manager (<<_e3432aa0-e197-3e23-8c84-0ce5c0be8ed1,icon:user[title="Actor"] Manager>>)
+
+_No description available_
+
+===== icon:filter[] Actor filter
+
+*user-manager: user-manager*
+
+==== [[_9eec4fdd-88bc-3648-a9b2-6a5ca86ac777]]image:icons/StartEvent.png[title="StartEvent"] Start1
+
+_No description available_
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_bd7b9f93-8aab-346f-a4a0-b1dedaff538f,GetClaim>>*
+
+==== [[_bd7b9f93-8aab-346f-a4a0-b1dedaff538f]]image:icons/ServiceTask.png[title="ServiceTask"] GetClaim
+
+_No description available_
+
+*Previous flow element(s)*: <<_9eec4fdd-88bc-3648-a9b2-6a5ca86ac777,Start1>>
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_cf1003b2-bf32-328e-a3cd-f29c07ddc969,Define the compensation>>*
+
+==== [[_036a9dbe-617a-36f6-a45c-6797037f78ea]]image:icons/EndEvent.png[title="EndEvent"] End1
+
+_No description available_
+
+*Previous flow element(s)*: <<_735c5c30-02a9-370b-8a5e-e5e5803d090b,Compensation Validatoin>>
+
+==== [[_cf1003b2-bf32-328e-a3cd-f29c07ddc969]]image:icons/Task.png[title="Task"] Define the compensation
+
+_No description available_
+
+*Previous flow element(s)*: <<_735c5c30-02a9-370b-8a5e-e5e5803d090b,Compensation Validatoin>>, <<_bd7b9f93-8aab-346f-a4a0-b1dedaff538f,GetClaim>>
+
+===== [[_da872aaa-62f7-31e7-931b-ddf418f49bb6]]image:icons/page.png[] DefineCompensation
+
+Page generated with Bonita UI designer
+
+.Widgets
+[caption=,grid=cols,options="header",cols="1,2,4a",stripes=even,frame=topbot]
+|===
+|Type    |Label                   |Description
+|Title   |                        |           
+|Title   |                        |           
+|Text    |Description             |           
+|Text    |Answer                  |           
+|Text    |Satisfaction Level      |           
+|Input   |Compensation Type       |           
+|Input   |Compensation Value      |           
+|Input   |Compensation Description|           
+|Checkbox|Compensation Validation |           
+|Button  |Submit                  |           
+|Text    |                        |           
+|===
+
+===== icon:list-alt[] Contract inputs
+
+[verse]
+{
+    customercompensationInput ([teal]_CustomercompensationInput_)
+}
+
+[verse]
+[teal]#CustomercompensationInput# {
+    compensationType ([olive]_Text_),
+    compensationValue ([olive]_Integer_),
+    compensationDescription ([olive]_Text_)
+}
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_0ba86af6-52f3-39da-9062-88ab005e36f3,Validate the compensation>>*
+
+==== [[_735c5c30-02a9-370b-8a5e-e5e5803d090b]]image:icons/XORGateway.png[title="XORGateway"] Compensation Validatoin
+
+_No description available_
+
+*Previous flow element(s)*: <<_0ba86af6-52f3-39da-9062-88ab005e36f3,Validate the compensation>>
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*Validated: To <<_036a9dbe-617a-36f6-a45c-6797037f78ea,End1>> (default)*
+
+Refused: To <<_cf1003b2-bf32-328e-a3cd-f29c07ddc969,Define the compensation>>::
++
+.When:
+[source,groovy]
+----
+!customercompensation.compensationValidation
+----
+
+==== [[_0ba86af6-52f3-39da-9062-88ab005e36f3]]image:icons/Task.png[title="Task"] Validate the compensation
+
+_No description available_
+
+*Previous flow element(s)*: <<_cf1003b2-bf32-328e-a3cd-f29c07ddc969,Define the compensation>>
+
+===== [[_547e5771-82fc-3c42-a87b-dcf3d4022b6f]]image:icons/page.png[] validateCo
+
+Page generated with Bonita UI designer
+
+.Widgets
+[caption=,grid=cols,options="header",cols="1,2,4a",stripes=even,frame=topbot]
+|===
+|Type  |Label                   |Description
+|Title |                        |           
+|Text  |                        |           
+|Title |                        |           
+|Title |                        |           
+|Text  |Description             |           
+|Text  |Answer                  |           
+|Text  |Satisfaction Level      |           
+|Text  |Compensation Type       |           
+|Text  |Compensation Value      |           
+|Text  |Compensation Description|           
+|Button|Refuse                  |           
+|Button|Validate                |           
+|Text  |                        |           
+|===
+
+===== icon:list-alt[] Contract inputs
+
+[verse]
+{
+    customercompensationInput ([teal]_CustomercompensationInput_)
+}
+
+[verse]
+[teal]#CustomercompensationInput# {
+    compensationValidation ([olive]_Boolean_)
+}
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_735c5c30-02a9-370b-8a5e-e5e5803d090b,Compensation Validatoin>>*
+
+== Process diagrams
+
+=== ClaimsManagementDiagram (1.0)
+
+_No description available_
+
+image::diagrams/ClaimsManagementDiagram-1.0.png[]
+
+== Organization
+
+=== Groups
+
+// Uncomment this line in organization_template.tpl to display the group hierarchy diagram.
+// image::groups.svg[link=images/groups.svg]
+
+[grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
+|===
+|Path                     |Display name          |Description                                                                         
+|/acme                    |Acme                  |This group represents the acme department of the ACME organization                  
+|/acme/hr                 |Human Resources       |This group represents the human resources department of the ACME organization       
+|/acme/finance            |Finance               |This group represents the finance department of the ACME organization               
+|/acme/it                 |Infrastructure        |This group represents the infrastructure department of the ACME organization        
+|/acme/marketing          |Marketing             |This group represents the marketing department of the ACME organization             
+|/acme/production         |Production            |This group represents the production department of the ACME organization            
+|/acme/production/rd      |Research & Development|This group represents the research & development department of the ACME organization
+|/acme/production/services|Services              |This group represents the services department of the ACME organization              
+|/acme/sales              |Sales                 |This group represents the sales department of the ACME organization                 
+|/acme/sales/europe       |Europe                |This group represents the europe department of the ACME organization                
+|/acme/sales/asia         |Asia                  |This group represents the asia department of the ACME organization                  
+|/acme/sales/latin_america|Latin America         |This group represents the latin america department of the ACME organization         
+|/acme/sales/north_america|North America         |This group represents the north america department of the ACME organization         
+|===
+
+=== Roles
+
+[grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
+|===
+|Name  |Display name|Description
+|member|Member      |           
+|===
+
+=== Profiles
+
+[grid=cols,options="header",cols="1e,3a",stripes=even,frame=topbot]
+|===
+|Name                                                    |Description                                                                                                                 
+|[[_1300bb05-3afe-3c2d-af8b-543b4fb16c32]]User           |The user can view and perform tasks and can start a new case of a
+process.                                                  
+|[[_080d4ce6-9f34-37f2-a270-2edb021a60ec]]Administrator  |The administrator can install a process, manage the organization, and
+handle some errors (for example, by replaying a task).
+|[[_ec4b68ef-adbc-302e-8811-94d9a8fc9032]]Process manager|The Process manager can supervise designated processes, and manage
+cases and tasks of those processes.                      
+|===
+

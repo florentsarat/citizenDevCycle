@@ -1,0 +1,28 @@
+@startuml
+
+package com.company.model {
+
+    class Claim {
+        +persistenceId : Long
+        +description : String
+        +answer : String
+        +satisfactionLevel : Integer
+    }
+
+    class CustomerCompensation {
+        +persistenceId : Long
+        +compensationType : String
+        +compensationValue : Integer
+        +compensationDescription : String
+        +compensationValidation : Boolean
+    }
+
+}
+
+CustomerCompensation o--  Claim : claim
+
+legend top left
+&#9830; Composition relation  &#9826; Aggregation relation  &#42; Multiple relation
+endlegend
+
+@enduml
