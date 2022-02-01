@@ -2,7 +2,7 @@
   "modelVersion" : "2.2",
   "id" : "myoverview",
   "name" : "myoverview",
-  "lastUpdate" : 1640966973648,
+  "lastUpdate" : 1640968761357,
   "rows" : [
     [
       {
@@ -657,108 +657,6 @@
                     ]
                   }
                 ]
-              ]
-            }
-          ]
-        ]
-      }
-    ],
-    [
-      {
-        "type" : "container",
-        "dimension" : {
-          "xs" : 12,
-          "sm" : 12,
-          "md" : 12,
-          "lg" : 12
-        },
-        "propertyValues" : {
-          "cssClasses" : {
-            "type" : "constant",
-            "value" : ""
-          },
-          "hidden" : {
-            "type" : "constant",
-            "value" : false
-          },
-          "repeatedCollection" : {
-            "type" : "variable",
-            "value" : ""
-          }
-        },
-        "reference" : "080051a6-518a-4ea9-abb3-9b21f4f1a61b",
-        "hasValidationError" : false,
-        "id" : "pbContainer",
-        "rows" : [
-          [
-            {
-              "type" : "component",
-              "dimension" : {
-                "xs" : 12,
-                "sm" : 12,
-                "md" : 12,
-                "lg" : 12
-              },
-              "propertyValues" : {
-                "cssClasses" : {
-                  "type" : "constant",
-                  "value" : ""
-                },
-                "hidden" : {
-                  "type" : "constant",
-                  "value" : false
-                },
-                "text" : {
-                  "type" : "interpolation",
-                  "value" : "Compensations"
-                },
-                "level" : {
-                  "type" : "constant",
-                  "value" : "Level 3"
-                },
-                "alignment" : {
-                  "type" : "constant",
-                  "value" : "left"
-                }
-              },
-              "reference" : "47eee263-f293-414c-ae67-777e53f9593a",
-              "hasValidationError" : false,
-              "id" : "pbTitle"
-            }
-          ],
-          [
-            {
-              "type" : "container",
-              "dimension" : {
-                "md" : 12,
-                "sm" : 12,
-                "xs" : 12,
-                "lg" : 12
-              },
-              "propertyValues" : {
-                "repeatedCollection" : {
-                  "type" : "variable",
-                  "value" : ""
-                },
-                "hidden" : {
-                  "type" : "constant",
-                  "value" : false
-                },
-                "cssClasses" : {
-                  "type" : "constant",
-                  "value" : ""
-                },
-                "dimension" : {
-                  "type" : "constant",
-                  "value" : 12
-                }
-              },
-              "reference" : "c1a0670b-c492-4588-a9c2-33ed3ea1a772",
-              "hasValidationError" : false,
-              "id" : "pbContainer",
-              "description" : "Auto generate ui for business object \"com.company.model.CustomerCompensation\"",
-              "rows" : [
-                [ ]
               ]
             }
           ]

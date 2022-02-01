@@ -2,7 +2,7 @@
   "modelVersion" : "2.2",
   "id" : "DefineCompensation",
   "name" : "DefineCompensation",
-  "lastUpdate" : 1640947980167,
+  "lastUpdate" : 1640968786675,
   "rows" : [
     [
       {
@@ -519,55 +519,6 @@
                       "reference" : "d669d7b7-b344-4bbf-bbdc-b11872692824",
                       "hasValidationError" : false,
                       "id" : "pbInput",
-                      "description" : ""
-                    }
-                  ],
-                  [
-                    {
-                      "type" : "component",
-                      "dimension" : {
-                        "md" : 12,
-                        "sm" : 12,
-                        "xs" : 12,
-                        "lg" : 12
-                      },
-                      "propertyValues" : {
-                        "labelHidden" : {
-                          "type" : "constant",
-                          "value" : false
-                        },
-                        "hidden" : {
-                          "type" : "expression",
-                          "value" : "!customercompensation.compensationValidation"
-                        },
-                        "cssClasses" : {
-                          "type" : "constant",
-                          "value" : ""
-                        },
-                        "disabled" : {
-                          "type" : "constant",
-                          "value" : true
-                        },
-                        "label" : {
-                          "type" : "interpolation",
-                          "value" : "Compensation Validation"
-                        },
-                        "dimension" : {
-                          "type" : "constant",
-                          "value" : 12
-                        },
-                        "value" : {
-                          "type" : "variable",
-                          "value" : "customercompensation.compensationValidation"
-                        },
-                        "required" : {
-                          "type" : "constant",
-                          "value" : false
-                        }
-                      },
-                      "reference" : "191cc32c-d77e-4295-9bb4-537ab94891c1",
-                      "hasValidationError" : false,
-                      "id" : "pbCheckbox",
                       "description" : ""
                     }
                   ]

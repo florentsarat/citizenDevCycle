@@ -3,7 +3,7 @@
   "previousArtifactVersion" : "1.10.34",
   "id" : "readAnswerAndRateItForm",
   "name" : "readAnswerAndRateItForm",
-  "lastUpdate" : 1632128361117,
+  "lastUpdate" : 1640968837304,
   "rows" : [
     [
       {
@@ -351,6 +351,18 @@
                         "dimension" : {
                           "type" : "constant",
                           "value" : 12
+                        },
+                        "labelPosition" : {
+                          "type" : "constant",
+                          "value" : "top"
+                        },
+                        "labelWidth" : {
+                          "type" : "constant",
+                          "value" : 4
+                        },
+                        "allowHTML" : {
+                          "type" : "constant",
+                          "value" : true
                         }
                       },
                       "reference" : "08e1bf8e-f201-44fb-b1c5-670bab90ae09",
@@ -406,7 +418,8 @@
                           "value" : "top"
                         },
                         "placeholder" : {
-                          "type" : "constant"
+                          "type" : "constant",
+                          "value" : "Value between 1 & 10"
                         },
                         "alignment" : {
                           "type" : "constant",
@@ -423,6 +436,26 @@
                         "value" : {
                           "type" : "variable",
                           "value" : "claim.satisfactionLevel"
+                        },
+                        "minLength" : {
+                          "type" : "constant",
+                          "value" : ""
+                        },
+                        "maxLength" : {
+                          "type" : "constant",
+                          "value" : ""
+                        },
+                        "min" : {
+                          "type" : "constant",
+                          "value" : 0
+                        },
+                        "max" : {
+                          "type" : "constant",
+                          "value" : 10
+                        },
+                        "step" : {
+                          "type" : "constant",
+                          "value" : 1
                         }
                       },
                       "reference" : "2ea415e9-e2e9-407d-aaf0-41cfe8631da4",
